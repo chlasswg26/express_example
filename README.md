@@ -2,7 +2,7 @@
  Bootcamp pijar camp with express js & postgres
 
 ## Features
-- Environment .env
+- Environment .env (Rename .env.example to .env only)
 - CORS
 - Response handler (helpers)
 - Database config with environment variable
