@@ -1,9 +1,9 @@
 const database = require('../config/database')
 
 module.exports = {
-    getAllProductControllers: (query) => {
+    getAllProductModels: (query, values = []) => {
         return new Promise((resolve, reject) => {
-            database.query(query, (error, result) => {
+            database.query(query, values, (error, result) => {
                 if (error) {
                     const errorMessage = error.message
 
@@ -16,9 +16,9 @@ module.exports = {
             })
         })
     },
-    getAllProductControllersById: (query) => {
+    getAllProductModelsById: (query, values = []) => {
         return new Promise((resolve, reject) => {
-            database.query(query, (error, result) => {
+            database.query(query, values, (error, result) => {
                 if (error) {
                     const errorMessage = error.message
 
@@ -31,9 +31,9 @@ module.exports = {
             })
         })
     },
-    postProductControllers: (query) => {
+    postProductModels: (query, values = []) => {
         return new Promise((resolve, reject) => {
-            database.query(query, (error, result) => {
+            database.query(query, values, (error, result) => {
                 if (error) {
                     const errorMessage = error.message
 
@@ -46,9 +46,9 @@ module.exports = {
             })
         })
     },
-    putProductControllers: (query) => {
+    putProductModels: (query, values = []) => {
         return new Promise((resolve, reject) => {
-            database.query(query, (error, result) => {
+            database.query(query, values, (error, result) => {
                 if (error) {
                     const errorMessage = error.message
 
@@ -61,9 +61,9 @@ module.exports = {
             })
         })
     },
-    deleteProductControllers: (query) => {
+    deleteProductModels: (query, values = []) => {
         return new Promise((resolve, reject) => {
-            database.query(query, (error, result) => {
+            database.query(query, values, (error, result) => {
                 if (error) {
                     const errorMessage = error.message
 
