@@ -17,7 +17,7 @@ const pool = new Pool({
     host: PGUSER,
     database: PGDATABASE,
     password: PGPASSWORD,
-    port: PGPORT,
+    port: Number(PGPORT),
     connectionTimeoutMillis: 50000,
     idleTimeoutMillis: 60000,
     allowExitOnIdle: true

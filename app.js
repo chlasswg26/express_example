@@ -28,4 +28,6 @@ app.use(morgan('dev'))
 
 app.use('/api/v1', routesNavigator)
 
-app.listen(PORT, () => console.log(`Environment & Port & Path ${NODE_ENV} ${PORT} ${path.resolve(__dirname, './.env') }`))
+app.listen(PORT, () => {
+    if (NODE_ENV === 'development') console.log(`Listen port at ${PORT}`)
+})

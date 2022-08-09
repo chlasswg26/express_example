@@ -13,7 +13,7 @@ module.exports = {
             const queryDatabase = 'SELECT * FROM products'
             const result = await getAllProductModels(queryDatabase)
 
-            return response(res, 200, result)
+            return response(res, 200, result || [])
         } catch (error) {
             return response(res, 500, {
                 message: error.message || error
@@ -27,12 +27,12 @@ module.exports = {
 
             if (!paramsLength) throw new Error('Request parameters empty!')
 
-            const id = request.params.id
+            const id = req.params.id
             const queryDatabase = 'SELECT * FROM products WHERE id = $1'
             const queryValues = [id]
             const result = await getAllProductModelsById(queryDatabase, queryValues)
 
-            return response(res, 200, result)
+            return response(res, 200, result || {})
         } catch (error) {
             return response(res, 500, {
                 message: error.message || error
@@ -48,15 +48,15 @@ module.exports = {
 
             const newProduct = {
                 name: body.name,
-                stock: body.stock,
-                price: body.price
+                stock: Number(body.stock),
+                price: Number(body.price)
             }
 
             const queryDatabase = 'INSERT INTO products(name, stock, price) VALUES($1, $2, $3)'
             const queryValues = [newProduct.name, newProduct.stock, newProduct.price]
             const result = await postProductModels(queryDatabase, queryValues)
 
-            return response(res, 200, result)
+            return response(res, 201, result)
         } catch (error) {
             return response(res, 500, {
                 message: error.message || error
@@ -67,17 +67,20 @@ module.exports = {
         try {
             const params = req.params
             const paramsLength = Object.keys(params).length
-
+            const body = req.body
+            const bodyLength = Object.keys(body).length
+            
             if (!paramsLength) throw new Error('Request parameters empty!')
+            if (!bodyLength) throw new Error('Request body empty!')
 
             const updateProduct = {
                 name: body.name,
-                stock: body.stock,
-                price: body.price
+                stock: Number(body.stock),
+                price: Number(body.price)
             }
 
-            const id = request.params.id
-            const queryDatabase = 'UPDATE products(name, stock, price) SET name = $1, stock = $2, price = $3 WHERE id = $4'
+            const id = req.params.id
+            const queryDatabase = 'UPDATE products SET name = $1, stock = $2, price = $3 WHERE id = $4'
             const queryValues = [
                 updateProduct.name,
                 updateProduct.stock,
@@ -100,7 +103,7 @@ module.exports = {
 
             if (!paramsLength) throw new Error('Request parameters empty!')
 
-            const id = request.params.id
+            const id = req.params.id
             const queryDatabase = 'DELETE FROM products WHERE id = $1'
             const queryValues = [id]
             const result = await deleteProductModels(queryDatabase, queryValues)
