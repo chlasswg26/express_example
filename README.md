@@ -12,6 +12,7 @@
 
 ## Stack
 - ExpressJS
+- Dotenv (Environment .env files)
 - Morgan (logger)
 - Nodemon (devs runner)
 - CORS
@@ -25,9 +26,9 @@
 - /products/:id
 
 ## To Do
-[ ] Fixing bug if available
-[ ] Pagination if needs
-[ ] idk, please suggest on me.... LOL
+- [ ] Fixing bug if available
+- [ ] Pagination if needs
+- [ ] idk, please suggest on me.... LOL
 
 
 Thanks for visit!
