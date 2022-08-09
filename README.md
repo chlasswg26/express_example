@@ -37,7 +37,7 @@ git clone https://github.com/chlasswg26/express_example.git
 cd express_example
 yarn install
 ```
-after installation you need to rename ****.env.example**** to ****.env***
+after installation you need to rename ****.env.example**** to ***.env***
 then change ****.env**** variables with yours
 
 ## Running programs (Development)
