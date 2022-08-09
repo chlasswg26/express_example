@@ -24,7 +24,7 @@ const pool = new Pool({
 })
 
 if (NODE_ENV === 'development') {
-    pool.on('connect', () => console.log('Postgres is now online...'))
+    pool.on('connect', () => console.log('Postgres connect...'))
     
     pool.on('error', error => console.log(error.message))
 
