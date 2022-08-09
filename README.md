@@ -25,6 +25,26 @@
 - /products
 - /products/:id
 
+## Pre-requisites
+- Node v16+
+- NPM v8+
+- Yarn v1.22+
+
+## Installation command
+***
+cd Documents
+git clone https://github.com/chlasswg26/express_example.git
+cd express_example
+yarn install
+***
+after installation you need to rename ****.env.example**** to ****.env***
+then change ****.env**** variables with yours
+
+## Running programs (Development)
+***
+yarn dev
+***
+
 ## To Do
 - [ ] Fixing bug if available
 - [ ] Pagination if needs
