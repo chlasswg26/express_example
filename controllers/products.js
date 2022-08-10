@@ -6,6 +6,7 @@ const {
     deleteProductModels
 } = require('../models/products')
 const { response } = require('../helpers')
+const createErrors = require('http-errors')
 
 module.exports = {
     getAllProductControllers: async (_, res) => {
@@ -15,8 +16,8 @@ module.exports = {
 
             return response(res, 200, result || [])
         } catch (error) {
-            return response(res, 500, {
-                message: error.message || error
+            return response(res, error?.status || 500, {
+                message: error?.message || error
             })
         }
     },
@@ -25,7 +26,7 @@ module.exports = {
             const params = req.params
             const paramsLength = Object.keys(params).length
 
-            if (!paramsLength) throw new Error('Request parameters empty!')
+            if (!paramsLength) throw new createErrors.BadRequest('Request parameters empty!')
 
             const id = req.params.id
             const queryDatabase = 'SELECT * FROM products WHERE id = $1'
@@ -34,8 +35,8 @@ module.exports = {
 
             return response(res, 200, result || {})
         } catch (error) {
-            return response(res, 500, {
-                message: error.message || error
+            return response(res, error?.status || 500, {
+                message: error?.message || error
             })
         }
     },
@@ -44,7 +45,7 @@ module.exports = {
             const body = req.body
             const bodyLength = Object.keys(body).length
 
-            if (!bodyLength) throw new Error('Request body empty!')
+            if (!bodyLength) throw new createErrors.BadRequest('Request body empty!')
 
             const newProduct = {
                 name: body.name,
@@ -58,8 +59,8 @@ module.exports = {
 
             return response(res, 201, result)
         } catch (error) {
-            return response(res, 500, {
-                message: error.message || error
+            return response(res, error?.status || 500, {
+                message: error?.message || error
             })
         }
     },
@@ -70,8 +71,8 @@ module.exports = {
             const body = req.body
             const bodyLength = Object.keys(body).length
             
-            if (!paramsLength) throw new Error('Request parameters empty!')
-            if (!bodyLength) throw new Error('Request body empty!')
+            if (!paramsLength) throw new createErrors.BadRequest('Request parameters empty!')
+            if (!bodyLength) throw new createErrors.BadRequest('Request body empty!')
 
             const updateProduct = {
                 name: body.name,
@@ -91,8 +92,8 @@ module.exports = {
 
             return response(res, 200, result)
         } catch (error) {
-            return response(res, 500, {
-                message: error.message || error
+            return response(res, error?.status || 500, {
+                message: error?.message || error
             })
         }
     },
@@ -101,7 +102,7 @@ module.exports = {
             const params = req.params
             const paramsLength = Object.keys(params).length
 
-            if (!paramsLength) throw new Error('Request parameters empty!')
+            if (!paramsLength) throw new createErrors.BadRequest('Request parameters empty!')
 
             const id = req.params.id
             const queryDatabase = 'DELETE FROM products WHERE id = $1'
@@ -110,8 +111,8 @@ module.exports = {
 
             return response(res, 200, result)
         } catch (error) {
-            return response(res, 500, {
-                message: error.message || error
+            return response(res, error?.status || 500, {
+                message: error?.message || error
             })
         }
     }
